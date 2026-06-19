@@ -2,6 +2,8 @@ import type { LucideIcon } from "lucide-react";
 
 export type Status = "Completed" | "In Progress" | "Archived";
 
+export type ProjectCategory = "AI" | "Backend" | "Full Stack" | "Frontend" | "Mobile";
+
 export type SocialLink = {
   label: string;
   href: string;
@@ -18,6 +20,7 @@ export type SkillNode = {
   level: number;
   unlocked: boolean;
   detail: string;
+  children?: SkillNode[];
 };
 
 export type SkillCategory = {
@@ -35,7 +38,7 @@ export type Project = {
   features: string[];
   status: Status;
   difficulty: "Easy" | "Medium" | "Hard" | "Legendary";
-  category: "AI" | "Backend" | "Full Stack" | "Open Source";
+  category: ProjectCategory;
 };
 
 export type Achievement = {
@@ -57,7 +60,11 @@ export type Experience = {
   year: string;
   role: string;
   company: string;
+  summary: string;
   objectives: string[];
+  skills: string[];
+  projects: string[];
+  contributions: string[];
 };
 
 export type Education = {
@@ -65,6 +72,8 @@ export type Education = {
   institution: string;
   result: string;
   year: string;
+  achievements: string[];
+  highlights: string[];
 };
 
 export type Interest = {

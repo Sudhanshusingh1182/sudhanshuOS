@@ -9,33 +9,33 @@ export function CharacterDashboard() {
   const { profile } = portfolioConfig;
 
   return (
-    <motion.aside initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} className="hud-panel p-5">
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <p className="font-mono text-xs uppercase tracking-[0.26em] text-neon">Character Profile</p>
-          <h2 className="mt-2 text-3xl font-black">{profile.name}</h2>
-          <p className="text-white/60">{profile.className}</p>
+    <motion.aside initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} className="hud-panel p-4 sm:p-5">
+      <div className="flex items-start justify-between gap-3 sm:gap-4">
+        <div className="min-w-0">
+          <p className="font-mono text-[10px] uppercase tracking-[0.26em] text-neon sm:text-xs">Character Profile</p>
+          <h2 className="mt-2 text-2xl font-black sm:text-3xl truncate">{profile.name}</h2>
+          <p className="text-sm text-white/60 sm:text-base">{profile.className}</p>
         </div>
-        <div className="grid h-16 w-16 place-items-center border border-neon bg-neon/10 text-neon shadow-glow">
-          <Shield size={30} />
-        </div>
-      </div>
-      <div className="mt-6 grid grid-cols-2 gap-3">
-        <div className="border border-white/10 p-3">
-          <p className="text-xs uppercase text-white/45">Level</p>
-          <p className="font-mono text-3xl text-neon">{profile.level}</p>
-        </div>
-        <div className="border border-white/10 p-3">
-          <p className="text-xs uppercase text-white/45">XP Sync</p>
-          <p className="font-mono text-3xl text-neon">{profile.xp}%</p>
+        <div className="grid h-12 w-12 shrink-0 place-items-center border border-neon bg-neon/10 text-neon shadow-glow sm:h-16 sm:w-16">
+          <Shield size={22} />
         </div>
       </div>
-      <div className="mt-6 space-y-4">
+      <div className="mt-4 grid grid-cols-2 gap-2 sm:mt-6 sm:gap-3">
+        <div className="border border-white/10 p-2 sm:p-3">
+          <p className="text-[10px] uppercase text-white/45 sm:text-xs">Level</p>
+          <p className="font-mono text-2xl text-neon sm:text-3xl">{profile.level}</p>
+        </div>
+        <div className="border border-white/10 p-2 sm:p-3">
+          <p className="text-[10px] uppercase text-white/45 sm:text-xs">XP Sync</p>
+          <p className="font-mono text-2xl text-neon sm:text-3xl">{profile.xp}%</p>
+        </div>
+      </div>
+      <div className="mt-4 space-y-3 sm:mt-6 sm:space-y-4">
         {profile.stats.map((stat) => (
           <div key={stat.label}>
-            <div className="mb-2 flex justify-between text-sm">
+            <div className="mb-1 flex justify-between text-xs sm:mb-2 sm:text-sm">
               <span>{stat.label}</span>
-              <span className="font-mono text-neon">{stat.value}</span>
+              <span className="font-mono text-neon text-xs sm:text-sm">{stat.value}</span>
             </div>
             <div className="h-2 border border-neon/30 bg-black">
               <motion.div initial={{ width: 0 }} whileInView={{ width: `${clamp(stat.value)}%` }} viewport={{ once: true }} transition={{ duration: 0.9 }} className="h-full bg-neon shadow-glow" />
@@ -43,8 +43,8 @@ export function CharacterDashboard() {
           </div>
         ))}
       </div>
-      <div className="mt-6 flex items-center gap-2 border border-neon/25 p-3 text-sm text-white/70">
-        <Sparkles className="text-neon" size={18} />
+      <div className="mt-4 flex items-center gap-2 border border-neon/25 p-2.5 text-xs text-white/70 sm:mt-6 sm:p-3 sm:text-sm">
+        <Sparkles className="text-neon shrink-0" size={16} />
         Mission alignment: Backend + AI + Product Impact.
       </div>
     </motion.aside>

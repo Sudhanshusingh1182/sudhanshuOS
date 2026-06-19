@@ -119,65 +119,65 @@ export function AudioFeed() {
       className="hud-panel overflow-hidden"
     >
       {/* Header */}
-      <div className="relative mb-3 flex items-center gap-2 border-b border-neon/15 pb-3">
+      <div className="relative mb-2 flex items-center gap-2 border-b border-neon/15 pb-2 sm:mb-3 sm:pb-3">
         <motion.span
           animate={{ opacity: [0.6, 1, 0.6] }}
           transition={{ duration: track.isPlaying ? 1.5 : 3, repeat: Infinity, ease: "easeInOut" }}
-          className="relative flex h-2 w-2"
+          className="relative flex h-2 w-2 shrink-0"
         >
           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-neon/50" />
           <span className="relative inline-flex h-2 w-2 rounded-full bg-neon" />
         </motion.span>
-        <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-neon">
+        <span className="font-mono text-[8px] font-bold uppercase tracking-[0.2em] text-neon sm:text-[10px]">
           NEURAL AUDIO FEED
         </span>
         <span className="h-px flex-1 bg-neon/15" />
       </div>
 
       {loading ? (
-        <div className="space-y-4 py-2">
-          <div className="flex items-center gap-3">
-            <div className="h-12 w-12 animate-pulse border border-neon/10 bg-neon/5" />
-            <div className="flex-1 space-y-2">
-              <div className="h-3 w-4/5 animate-pulse rounded bg-neon/10" />
+        <div className="space-y-3 py-2 sm:space-y-4">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="h-10 w-10 animate-pulse border border-neon/10 bg-neon/5 sm:h-12 sm:w-12" />
+            <div className="flex-1 space-y-1.5 sm:space-y-2">
+              <div className="h-2.5 w-4/5 animate-pulse rounded bg-neon/10 sm:h-3" />
               <div className="h-2 w-3/5 animate-pulse rounded bg-neon/5" />
             </div>
           </div>
           <div className="flex gap-[2px]">
             {BASE_HEIGHTS.map((_, i) => (
-              <div key={i} className="h-3 w-[2.5px] animate-pulse bg-neon/10" />
+              <div key={i} className="h-2 w-[2px] animate-pulse bg-neon/10 sm:h-3 sm:w-[2.5px]" />
             ))}
           </div>
         </div>
       ) : !track.configured ? (
         <a
           href="/api/spotify/auth"
-          className="group flex items-center gap-3 border border-transparent px-0 py-3 transition-all duration-200"
+          className="group flex items-center gap-3 border border-transparent px-0 py-2 transition-all duration-200 sm:py-3"
         >
-          <div className="grid h-12 w-12 place-items-center border border-neon/20 group-hover:border-neon/40">
-            <Disc3 size={18} className="text-white/20 group-hover:text-neon transition-colors duration-200" />
+          <div className="grid h-10 w-10 place-items-center border border-neon/20 group-hover:border-neon/40 sm:h-12 sm:w-12">
+            <Disc3 size={16} className="text-white/20 group-hover:text-neon transition-colors duration-200" />
           </div>
-          <div>
-            <p className="font-mono text-xs text-white/30 group-hover:text-white/50 transition-colors duration-200">
+          <div className="min-w-0">
+            <p className="font-mono text-[11px] text-white/30 group-hover:text-white/50 transition-colors duration-200 sm:text-xs truncate">
               Spotify Disconnected
             </p>
-            <p className="font-mono text-[10px] text-white/15 group-hover:text-white/30 transition-colors duration-200">
+            <p className="font-mono text-[9px] text-white/15 group-hover:text-white/30 transition-colors duration-200 sm:text-[10px] truncate">
               Click to authorize
             </p>
           </div>
         </a>
       ) : !showTrack ? (
-        <div className="py-4">
-          <div className="flex items-center gap-3">
-            <div className="grid h-12 w-12 place-items-center border border-neon/20">
-              <Disc3 size={18} className="text-white/20" />
+        <div className="py-3 sm:py-4">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="grid h-10 w-10 place-items-center border border-neon/20 sm:h-12 sm:w-12">
+              <Disc3 size={16} className="text-white/20" />
             </div>
-            <div>
-              <p className="font-mono text-xs text-white/30">{status}</p>
-              <p className="font-mono text-[10px] text-white/15">No recently played tracks</p>
+            <div className="min-w-0">
+              <p className="font-mono text-[11px] text-white/30 sm:text-xs truncate">{status}</p>
+              <p className="font-mono text-[9px] text-white/15 sm:text-[10px] truncate">No recently played tracks</p>
             </div>
           </div>
-          <div className="mt-4">
+          <div className="mt-3 sm:mt-4">
             <Waveform active={false} />
           </div>
         </div>
@@ -191,11 +191,11 @@ export function AudioFeed() {
             transition={{ duration: 0.3 }}
           >
             {/* Status */}
-            <div className="mb-3 flex items-center gap-2">
+            <div className="mb-2 flex items-center gap-1.5 sm:mb-3 sm:gap-2">
               <motion.span
                 animate={track.isPlaying ? { opacity: [0.7, 1, 0.7] } : { opacity: 1 }}
                 transition={{ duration: 2, repeat: track.isPlaying ? Infinity : 0, ease: "easeInOut" }}
-                className="font-mono text-[10px] uppercase tracking-[0.15em] text-neon/70"
+                className="font-mono text-[8px] uppercase tracking-[0.15em] text-neon/70 sm:text-[10px] truncate"
               >
                 {status}
               </motion.span>
@@ -203,7 +203,7 @@ export function AudioFeed() {
                 <motion.span
                   animate={{ opacity: [1, 0.2, 1] }}
                   transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }}
-                  className="font-mono text-[10px] text-neon/40"
+                  className="font-mono text-[8px] text-neon/40 sm:text-[10px] shrink-0"
                 >
                   ● LIVE
                 </motion.span>
@@ -211,8 +211,8 @@ export function AudioFeed() {
             </div>
 
             {/* Album art + Info */}
-            <div className="flex items-center gap-3">
-              <div className="relative h-14 w-14 flex-shrink-0 overflow-hidden border border-neon/30">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="relative h-12 w-12 shrink-0 overflow-hidden border border-neon/30 sm:h-14 sm:w-14">
                 <AnimatePresence mode="wait">
                   <motion.img
                     key={track.albumArt || "empty"}
@@ -252,7 +252,7 @@ export function AudioFeed() {
             </div>
 
             {/* Waveform */}
-            <div className="mt-3">
+            <div className="mt-2 sm:mt-3">
               <Waveform active={track.isPlaying} />
             </div>
 
@@ -264,9 +264,9 @@ export function AudioFeed() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.02, x: 2 }}
                 whileTap={{ scale: 0.98 }}
-                className="mt-3 flex items-center justify-center gap-2 border border-neon/40 px-4 py-2.5 font-mono text-[11px] font-bold uppercase tracking-[0.1em] text-neon transition-all duration-200 hover:border-neon hover:bg-neon hover:text-black hover:shadow-[0_0_20px_rgba(34,197,94,0.2)]"
+                className="mt-2 flex items-center justify-center gap-2 border border-neon/40 px-3 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.1em] text-neon transition-all duration-200 hover:border-neon hover:bg-neon hover:text-black hover:shadow-[0_0_20px_rgba(34,197,94,0.2)] sm:mt-3 sm:px-4 sm:py-2.5 sm:text-[11px]"
               >
-                <ExternalLink size={13} />
+                <ExternalLink size={12} />
                 Open in Spotify
               </motion.a>
             )}
