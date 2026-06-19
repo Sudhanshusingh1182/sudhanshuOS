@@ -7,10 +7,10 @@ export function InterestsZone() {
     <SectionFrame id="interests" eyebrow="Interests Zone" title="Collectible Focus Cards">
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {portfolioConfig.interests.map((interest) => (
-          <article key={interest.name} className="border border-neon/25 bg-panel/70 p-4 transition hover:border-neon hover:shadow-glow">
-            <Cpu className="text-neon" size={20} />
-            <h3 className="mt-4 font-bold">{interest.name}</h3>
-            <p className="mt-2 text-sm text-white/55">{interest.signal}</p>
+          <article key={interest.name} className="border border-neon/25 bg-panel/70 p-3 transition hover:border-neon hover:shadow-glow sm:p-4">
+            <Cpu className="text-neon" size={18} />
+            <h3 className="mt-3 font-bold text-sm sm:mt-4 sm:text-base">{interest.name}</h3>
+            <p className="mt-1.5 text-xs text-white/55 sm:mt-2 sm:text-sm">{interest.signal}</p>
           </article>
         ))}
       </div>

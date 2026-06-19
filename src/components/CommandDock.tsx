@@ -37,16 +37,16 @@ export function CommandDock({ onTalk }: CommandDockProps) {
       aria-label="System command dock"
       className="fixed bottom-4 left-1/2 z-40 -translate-x-1/2"
     >
-      <div className="hud-panel flex items-center gap-1 p-2">
+      <div className="hud-panel flex items-center gap-0.5 p-1.5 sm:gap-1 sm:p-2">
         <motion.a
           variants={item}
           whileHover={{ scale: 1.08 }}
           whileTap={{ scale: 0.92 }}
-          className="grid h-11 w-11 place-items-center border border-neon/30 text-neon transition-shadow duration-200 hover:shadow-[0_0_16px_rgba(34,197,94,0.2)]"
+          className="grid h-9 w-9 place-items-center border border-neon/30 text-neon transition-shadow duration-200 hover:shadow-[0_0_16px_rgba(34,197,94,0.2)] sm:h-11 sm:w-11"
           href="#home"
           aria-label="Home"
         >
-          <Cpu size={18} />
+          <Cpu size={16} />
         </motion.a>
         {links.map((link) => (
           <motion.a
@@ -54,22 +54,22 @@ export function CommandDock({ onTalk }: CommandDockProps) {
             variants={item}
             whileHover={{ scale: 1.08, y: -2 }}
             whileTap={{ scale: 0.92 }}
-            className="grid h-11 w-11 place-items-center border border-white/10 text-white/75 transition-all duration-200 hover:border-neon hover:text-neon hover:shadow-[0_0_12px_rgba(34,197,94,0.15)]"
+            className="grid h-9 w-9 place-items-center border border-white/10 text-white/75 transition-all duration-200 hover:border-neon hover:text-neon hover:shadow-[0_0_12px_rgba(34,197,94,0.15)] sm:h-11 sm:w-11"
             href={link.href}
             aria-label={link.label}
           >
-            <link.icon size={18} />
+            <link.icon size={16} />
           </motion.a>
         ))}
         <motion.button
           variants={item}
           whileHover={{ scale: 1.08 }}
           whileTap={{ scale: 0.92 }}
-          className="grid h-11 w-11 place-items-center border border-neon bg-neon text-black transition-shadow duration-200 hover:shadow-[0_0_20px_rgba(34,197,94,0.35)]"
+          className="grid h-9 w-9 place-items-center border border-neon bg-neon text-black transition-shadow duration-200 hover:shadow-[0_0_20px_rgba(34,197,94,0.35)] sm:h-11 sm:w-11"
           onClick={onTalk}
           aria-label="Open SudhanshuGPT"
         >
-          <Bot size={18} />
+          <Bot size={16} />
         </motion.button>
       </div>
     </motion.nav>

@@ -1,5 +1,6 @@
 "use client";
 
+import { Fragment } from "react";
 import { motion } from "framer-motion";
 import { Linkedin, Twitter } from "lucide-react";
 
@@ -18,9 +19,8 @@ export function NetworkHub() {
     >
       <div className="flex items-center gap-0">
         {LINKS.map((link, i) => (
-          <>
+          <Fragment key={link.id}>
             <motion.div
-              key={link.id}
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.6 + i * 0.15, type: "spring", damping: 16, stiffness: 260 }}
@@ -38,7 +38,7 @@ export function NetworkHub() {
               </motion.a>
             </motion.div>
             {i < LINKS.length - 1 && (
-              <svg key={`line-${i}`} width={20} height={2} className="mx-0">
+              <svg width={20} height={2} className="mx-0">
                 <motion.line
                   x1={0} y1={1} x2={20} y2={1}
                   stroke="rgba(34,197,94,0.25)"
@@ -49,7 +49,7 @@ export function NetworkHub() {
                 />
               </svg>
             )}
-          </>
+          </Fragment>
         ))}
       </div>
     </motion.div>
