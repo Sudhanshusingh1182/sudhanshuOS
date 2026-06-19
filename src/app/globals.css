@@ -53,6 +53,11 @@ textarea {
   background: linear-gradient(145deg, rgba(16, 16, 16, 0.86), rgba(5, 5, 5, 0.88));
   box-shadow: inset 0 0 24px rgba(34, 197, 94, 0.1), 0 0 28px rgba(34, 197, 94, 0.1);
   backdrop-filter: blur(16px);
+  transition: box-shadow 0.3s ease;
+}
+
+.hud-panel:hover {
+  box-shadow: inset 0 0 24px rgba(34, 197, 94, 0.15), 0 0 32px rgba(34, 197, 94, 0.15);
 }
 
 .neon-text {

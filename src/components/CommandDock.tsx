@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { Bot, Cpu, FolderArchive, Radio, Trophy, Wrench } from "lucide-react";
 
 type CommandDockProps = {
@@ -13,22 +14,64 @@ const links = [
   { href: "#achievements", label: "Arena", icon: Trophy }
 ];
 
+const container = {
+  hidden: { opacity: 0, y: 20 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { staggerChildren: 0.06, delayChildren: 0.1 }
+  }
+};
+
+const item = {
+  hidden: { opacity: 0, y: 12 },
+  show: { opacity: 1, y: 0 }
+};
+
 export function CommandDock({ onTalk }: CommandDockProps) {
   return (
-    <nav aria-label="System command dock" className="fixed bottom-4 left-1/2 z-40 -translate-x-1/2">
+    <motion.nav
+      variants={container}
+      initial="hidden"
+      animate="show"
+      aria-label="System command dock"
+      className="fixed bottom-4 left-1/2 z-40 -translate-x-1/2"
+    >
       <div className="hud-panel flex items-center gap-1 p-2">
-        <a className="grid h-11 w-11 place-items-center border border-neon/30 text-neon" href="#home" aria-label="Home">
+        <motion.a
+          variants={item}
+          whileHover={{ scale: 1.08 }}
+          whileTap={{ scale: 0.92 }}
+          className="grid h-11 w-11 place-items-center border border-neon/30 text-neon transition-shadow duration-200 hover:shadow-[0_0_16px_rgba(34,197,94,0.2)]"
+          href="#home"
+          aria-label="Home"
+        >
           <Cpu size={18} />
-        </a>
+        </motion.a>
         {links.map((link) => (
-          <a key={link.href} className="grid h-11 w-11 place-items-center border border-white/10 text-white/75 transition hover:border-neon hover:text-neon" href={link.href} aria-label={link.label}>
+          <motion.a
+            key={link.href}
+            variants={item}
+            whileHover={{ scale: 1.08, y: -2 }}
+            whileTap={{ scale: 0.92 }}
+            className="grid h-11 w-11 place-items-center border border-white/10 text-white/75 transition-all duration-200 hover:border-neon hover:text-neon hover:shadow-[0_0_12px_rgba(34,197,94,0.15)]"
+            href={link.href}
+            aria-label={link.label}
+          >
             <link.icon size={18} />
-          </a>
+          </motion.a>
         ))}
-        <button className="grid h-11 w-11 place-items-center border border-neon bg-neon text-black" onClick={onTalk} aria-label="Open SudhanshuGPT">
+        <motion.button
+          variants={item}
+          whileHover={{ scale: 1.08 }}
+          whileTap={{ scale: 0.92 }}
+          className="grid h-11 w-11 place-items-center border border-neon bg-neon text-black transition-shadow duration-200 hover:shadow-[0_0_20px_rgba(34,197,94,0.35)]"
+          onClick={onTalk}
+          aria-label="Open SudhanshuGPT"
+        >
           <Bot size={18} />
-        </button>
+        </motion.button>
       </div>
-    </nav>
+    </motion.nav>
   );
 }

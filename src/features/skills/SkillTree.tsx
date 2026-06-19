@@ -8,8 +8,15 @@ export function SkillTree() {
   return (
     <SectionFrame id="skills" eyebrow="Engineering Workshop" title="RPG Skill Tree">
       <div className="grid gap-5 lg:grid-cols-5">
-        {portfolioConfig.skills.map((category) => (
-          <div key={category.title} className="hud-panel p-4">
+        {portfolioConfig.skills.map((category, ci) => (
+          <motion.div
+            key={category.title}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: ci * 0.08, duration: 0.4 }}
+            className="hud-panel p-4"
+          >
             <h3 className="font-mono text-lg font-bold uppercase text-neon">{category.title}</h3>
             <div className="mt-5 space-y-4">
               {category.nodes.map((node, index) => (
@@ -33,7 +40,7 @@ export function SkillTree() {
                 </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </SectionFrame>

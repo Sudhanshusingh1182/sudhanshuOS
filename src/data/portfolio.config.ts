@@ -11,7 +11,7 @@ export const portfolioConfig: PortfolioConfig = {
     email: "sudhanshu.sde@gmail.com",
     resume: {
       title: "Sudhanshu Singh Resume",
-      url: "/resume.pdf"
+      url: "https://drive.google.com/file/d/14bSyO7rrS7SSI-cxukZBhrPFn-xeok-Y/view"
     },
     xp: 78,
     stats: [
@@ -23,8 +23,9 @@ export const portfolioConfig: PortfolioConfig = {
       { label: "DevOps", value: 68 }
     ],
     socials: [
-      { label: "GitHub", href: "https://github.com/sudhanshu", icon: "Github" },
-      { label: "LinkedIn", href: "https://www.linkedin.com/in/sudhanshu", icon: "Linkedin" },
+      { label: "GitHub", href: "https://github.com/Sudhanshusingh1182", icon: "Github" },
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/sudhanshusingh3", icon: "Linkedin" },
+      { label: "X", href: "https://x.com/SudhanshuS1182", icon: "Twitter" },
       { label: "Email", href: "mailto:sudhanshu.sde@gmail.com", icon: "Mail" }
     ]
   },
@@ -153,16 +154,22 @@ export const portfolioConfig: PortfolioConfig = {
   ],
   experience: [
     {
-      year: "2025",
+      year: "Sept 2025 — Present",
       role: "Software Engineer",
+      company: "Bellpost",
+      objectives: ["Backend Development", "API Design", "Feature Development", "System Improvements"]
+    },
+    {
+      year: "Mar 2025 — Sept 2025",
+      role: "Software Engineering Intern",
       company: "Bellpost",
       objectives: ["Backend Development", "API Design", "Feature Development", "System Improvements"]
     }
   ],
   education: [
-    { stage: "Stage 1: Matriculation", institution: "School Board", result: "Strong academic foundation", year: "Completed" },
-    { stage: "Stage 2: Intermediate", institution: "Science Stream", result: "District Topper milestone", year: "Completed" },
-    { stage: "Stage 3: B.Tech", institution: "Engineering Program", result: "Software engineering path", year: "Completed" }
+    { stage: "B.Tech in Computer Science & Engineering", institution: "NIT Patna", result: "CGPA 8.37 / 10", year: "2021 — 2025" },
+    { stage: "Intermediate (12th)", institution: "CBSE School", result: "94.2% — School Topper", year: "2021" },
+    { stage: "Matriculation (10th)", institution: "CBSE School", result: "98% — District Topper", year: "2019" }
   ],
   interests: [
     { name: "Artificial Intelligence", signal: "Model-powered products" },

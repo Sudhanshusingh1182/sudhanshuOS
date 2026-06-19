@@ -56,9 +56,10 @@ export function AIAssistant({ open, onOpenChange }: AIAssistantProps) {
     <AnimatePresence>
       {open && (
         <motion.aside
-          initial={{ opacity: 0, y: 28 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 28 }}
+          initial={{ opacity: 0, y: 40, scale: 0.96 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 40, scale: 0.96 }}
+          transition={{ type: "spring", damping: 22, stiffness: 280 }}
           className="fixed bottom-24 right-4 z-50 flex h-[min(680px,76vh)] w-[min(420px,calc(100vw-2rem))] flex-col hud-panel"
           aria-label="SudhanshuGPT assistant"
         >
@@ -79,11 +80,31 @@ export function AIAssistant({ open, onOpenChange }: AIAssistantProps) {
 
           <div className="flex-1 space-y-3 overflow-y-auto p-4">
             {messages.map((message, index) => (
-              <div key={`${message.role}-${index}`} className={message.role === "user" ? "ml-auto max-w-[88%] border border-neon/50 bg-neon/12 p-3 text-sm" : "max-w-[92%] border border-white/10 bg-white/[0.04] p-3 text-sm text-white/82"}>
+              <motion.div
+                key={`${message.role}-${index}`}
+                initial={{ opacity: 0, y: 12, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.25, ease: "easeOut" }}
+                className={message.role === "user" ? "ml-auto max-w-[88%] border border-neon/50 bg-neon/12 p-3 text-sm" : "max-w-[92%] border border-white/10 bg-white/[0.04] p-3 text-sm text-white/82"}
+              >
                 <pre className="whitespace-pre-wrap font-sans">{message.content}</pre>
-              </div>
+              </motion.div>
             ))}
-            {loading && <div className="max-w-[92%] border border-white/10 bg-white/[0.04] p-3 text-sm text-neon">SudhanshuGPT is scanning portfolio memory...</div>}
+            {loading && (
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.2 }}
+                className="max-w-[92%] border border-white/10 bg-white/[0.04] p-3 text-sm text-neon"
+              >
+                <motion.span
+                  animate={{ opacity: [1, 0.4, 1] }}
+                  transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  SudhanshuGPT is scanning portfolio memory...
+                </motion.span>
+              </motion.div>
+            )}
           </div>
 
           <div className="border-t border-neon/25 p-4">

@@ -5,7 +5,7 @@ export type Status = "Completed" | "In Progress" | "Archived";
 export type SocialLink = {
   label: string;
   href: string;
-  icon: "Github" | "Linkedin" | "Mail" | "FileText";
+  icon: "Github" | "Linkedin" | "Twitter" | "Mail" | "FileText";
 };
 
 export type RpgStat = {

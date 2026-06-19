@@ -52,7 +52,14 @@ const scopeKeywords = [
   "background",
   "ai",
   "backend",
-  "system design"
+  "system design",
+  "hire",
+  "why",
+  "should",
+  "recommend",
+  "linkedin",
+  "twitter",
+  "x"
 ];
 
 function contextBlocks(): ContextBlock[] {
@@ -115,8 +122,8 @@ function contextBlocks(): ContextBlock[] {
     },
     {
       id: "contact",
-      label: "Contact information",
-      keywords: ["contact", "email", "hire", "reach", "message"],
+      label: "Contact information and social profiles",
+      keywords: ["contact", "email", "hire", "reach", "message", "linkedin", "twitter", "x", "recommend"],
       value: { email: profile.email, socials: profile.socials }
     }
   ];
@@ -147,7 +154,7 @@ export async function askSudhanshuGPT(question: string) {
   }
 
   const apiKey = process.env.GEMINI_API_KEY;
-  const model = process.env.GEMINI_MODEL ?? "gemini-1.5-flash";
+  const model = process.env.GEMINI_MODEL ?? "gemini-2.5-flash-lite";
 
   if (!apiKey) {
     return "Gemini uplink is not configured yet. Add GEMINI_API_KEY to the environment so SudhanshuGPT can answer from the portfolio data.";
@@ -157,8 +164,10 @@ export async function askSudhanshuGPT(question: string) {
     "You are SudhanshuGPT, the AI representative inside SudhanshuOS.",
     "Answer only questions about Sudhanshu Singh using the provided portfolio context.",
     "Do not invent details. If the requested information is not present, say that it is not available in the current portfolio data.",
-    "If asked about the resume, mention that it is available from the Download Resume button in the Hero section and include the configured URL when useful.",
+    `If asked about the resume, mention that it is available from the Download Resume button in the Hero section. The direct resume URL is: ${portfolioConfig.profile.resume.url}`,
     "Keep responses concise, recruiter-friendly, and lightly cyberpunk-themed without being confusing.",
+    "If asked why someone should hire him, highlight his strengths from the portfolio data: backend & AI expertise, strong problem-solving, projects, and achievements.",
+    "If asked about LinkedIn or X/Twitter, provide the relevant profile URL from the social links.",
     "",
     `Portfolio context:\n${context}`,
     "",
@@ -179,6 +188,8 @@ export async function askSudhanshuGPT(question: string) {
   });
 
   if (!response.ok) {
+    const errorBody = await response.text().catch(() => "unknown");
+    console.error(`Gemini API error (${response.status}): ${errorBody}`);
     return "Gemini uplink failed. SudhanshuGPT could not generate a response right now.";
   }
 

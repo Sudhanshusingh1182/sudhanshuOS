@@ -23,8 +23,16 @@ export function ProjectArchive() {
         ))}
       </div>
       <div className="grid gap-5 lg:grid-cols-2">
-        {projects.map((project) => (
-          <motion.article key={project.name} whileHover={{ rotateX: 2, rotateY: -2, y: -4 }} className="hud-panel p-5">
+        {projects.map((project, i) => (
+          <motion.article
+            key={project.name}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.1, duration: 0.4 }}
+            whileHover={{ rotateX: 2, rotateY: -2, y: -4 }}
+            className="hud-panel p-5"
+          >
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
                 <p className="font-mono text-xs uppercase tracking-[0.2em] text-neon">{project.category} Mission</p>
