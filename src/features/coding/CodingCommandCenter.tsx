@@ -31,10 +31,10 @@ const ORBITS: OrbitConfig[] = [
 
 /* ─── Platform achievements map ─── */
 const PLATFORM_ACHIEVEMENTS: Record<string, typeof ACHIEVEMENTS> = {
-  GitHub: ACHIEVEMENTS.filter((a) => a.title.includes("Codeforces") || a.title.includes("Specialist")),
-  LeetCode: ACHIEVEMENTS.filter((a) => a.title.includes("LeetCode") || a.title.includes("Knight")),
-  Codeforces: ACHIEVEMENTS.filter((a) => a.title.includes("Codeforces") || a.title.includes("Pupil")),
-  CodeChef: ACHIEVEMENTS.filter((a) => a.title.includes("CodeChef") || a.title.includes("Star")),
+  GitHub: ACHIEVEMENTS.filter((a) => a.title.includes("Contributions")),
+  LeetCode: ACHIEVEMENTS.filter((a) => a.title.includes("LeetCode")),
+  Codeforces: ACHIEVEMENTS.filter((a) => a.title.includes("Codeforces")),
+  CodeChef: ACHIEVEMENTS.filter((a) => a.title.includes("CodeChef")),
   AtCoder: []
 };
 
@@ -61,9 +61,9 @@ function AnimatedCount({ value, suffix = "" }: { value: string; suffix?: string 
 
 /* ─── Platform achievements for focus mode ─── */
 function getAchievements(platform: string) {
-  const direct = PLATFORM_ACHIEVEMENTS[platform] || [];
-  if (direct.length > 0) return direct;
-  return ACHIEVEMENTS.filter((a) => platform === "GitHub" || a.title.includes("District") || a.title.includes("NPTEL"));
+  const direct = PLATFORM_ACHIEVEMENTS[platform];
+  if (direct && direct.length > 0) return direct;
+  return [];
 }
 
 /* ─── Central Core ─── */

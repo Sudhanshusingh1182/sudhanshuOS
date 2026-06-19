@@ -25,6 +25,7 @@ export function AsteroidDodge({ onClose }: AsteroidDodgeProps) {
   const lastSpawnRef = useRef(0);
   const idRef = useRef(0);
   const playerXRef = useRef(playerX);
+  const aliveRef = useRef(true);
 
   useEffect(() => { playerXRef.current = playerX; }, [playerX]);
 
@@ -34,6 +35,7 @@ export function AsteroidDodge({ onClose }: AsteroidDodgeProps) {
     setScore(0);
     setGameOver(false);
     speedRef.current = 1;
+    aliveRef.current = true;
     lastSpawnRef.current = 0;
     idRef.current = 0;
     setPlaying(true);
@@ -56,14 +58,17 @@ export function AsteroidDodge({ onClose }: AsteroidDodgeProps) {
   useEffect(() => {
     if (!playing) return;
     let last = performance.now();
+    let scoreAcc = 0;
 
     const loop = (now: number) => {
-      const dt = (now - last) / 16;
+      if (!aliveRef.current) return;
+      const dt = Math.min((now - last) / 16, 3);
       last = now;
 
       speedRef.current += 0.0004 * dt;
+      scoreAcc += 1 * dt;
 
-      if (now - lastSpawnRef.current > Math.max(300, 800 - score * 2)) {
+      if (now - lastSpawnRef.current > Math.max(300, 800 - scoreAcc * 2)) {
         lastSpawnRef.current = now;
         idRef.current += 1;
         setAsteroids((prev) => [
@@ -83,31 +88,32 @@ export function AsteroidDodge({ onClose }: AsteroidDodgeProps) {
           .map((a) => ({ ...a, y: a.y + a.speed * speedRef.current * dt }))
           .filter((a) => a.y < H + 20);
 
-        const px = playerXRef.current;
-        const hit = moved.some(
-          (a) =>
-            a.y + a.size > PLAYER_Y &&
-            a.y < PLAYER_Y + PLAYER_H &&
-            a.x + a.size > px &&
-            a.x < px + PLAYER_W
-        );
-
-        if (hit) {
-          setPlaying(false);
-          setGameOver(true);
-          return prev;
+        if (aliveRef.current) {
+          const px = playerXRef.current;
+          const hit = moved.some(
+            (a) =>
+              a.y + a.size > PLAYER_Y &&
+              a.y < PLAYER_Y + PLAYER_H &&
+              a.x + a.size > px &&
+              a.x < px + PLAYER_W
+          );
+          if (hit) {
+            aliveRef.current = false;
+            setPlaying(false);
+            setGameOver(true);
+          }
         }
 
         return moved;
       });
 
-      setScore((s) => s + 1 * dt);
+      setScore(Math.floor(scoreAcc));
       frameRef.current = requestAnimationFrame(loop);
     };
 
     frameRef.current = requestAnimationFrame(loop);
     return () => cancelAnimationFrame(frameRef.current);
-  }, [playing, score]);
+  }, [playing]);
 
   return (
     <motion.div

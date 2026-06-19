@@ -272,6 +272,11 @@ export const portfolioConfig: PortfolioConfig = {
       title: "Codeforces Specialist",
       description: "Achieved Specialist rating on Codeforces through consistent contest participation and problem solving.",
       date: "2025"
+    },
+    {
+      title: "100+ Contributions",
+      description: "Active open-source presence with 100+ contributions across repositories on GitHub.",
+      date: "2025"
     }
   ],
   codingProfiles: [
