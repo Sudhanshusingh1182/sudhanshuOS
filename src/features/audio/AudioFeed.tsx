@@ -92,7 +92,6 @@ export function AudioFeed() {
         const data = (await res.json()) as TrackInfo;
         if (mounted) {
           setTrack(data);
-          setArtLoaded(false);
         }
       } catch {
         if (mounted) setTrack(EMPTY);
@@ -104,6 +103,10 @@ export function AudioFeed() {
     const interval = setInterval(fetchTrack, 30_000);
     return () => { mounted = false; clearInterval(interval); };
   }, []);
+
+  useEffect(() => {
+    setArtLoaded(false);
+  }, [track.albumArt]);
 
   const status = track.configured
     ? pickStatus(track.isPlaying, !!track.title, track.title || "idle")
