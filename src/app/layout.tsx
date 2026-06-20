@@ -12,6 +12,10 @@ export const metadata: Metadata = {
     description: "Software engineer portfolio featuring backend systems, AI applications, and competitive programming.",
     type: "website"
   },
+  icons: {
+    icon: "/favicon.svg",
+    apple: "/favicon.svg"
+  },
   robots: {
     index: true,
     follow: true
