@@ -38,10 +38,10 @@ export function AIAssistant({ open, onOpenChange }: AIAssistantProps) {
 
       setMessages((current) => [
         ...current,
-        { role: "assistant", content: response.ok ? result.answer ?? "SudhanshuGPT returned an empty signal." : result.error ?? "SudhanshuGPT is offline." }
+        { role: "assistant", content: response.ok ? result.answer ?? "I couldn't find an answer to that." : result.error ?? "Assistant is offline." }
       ]);
     } catch {
-      setMessages((current) => [...current, { role: "assistant", content: "SudhanshuGPT uplink failed. Try again in a moment." }]);
+      setMessages((current) => [...current, { role: "assistant", content: "Connection failed. Please try again." }]);
     } finally {
       setLoading(false);
     }
@@ -61,7 +61,7 @@ export function AIAssistant({ open, onOpenChange }: AIAssistantProps) {
           exit={{ opacity: 0, y: 40, scale: 0.96 }}
           transition={{ type: "spring", damping: 22, stiffness: 280 }}
           className="fixed bottom-24 right-4 z-50 flex h-[min(680px,76vh)] w-[min(420px,calc(100vw-2rem))] flex-col hud-panel"
-          aria-label="SudhanshuGPT assistant"
+          aria-label="AI Assistant"
         >
           <header className="flex items-center justify-between border-b border-neon/25 p-4">
             <div className="flex items-center gap-3">
@@ -70,7 +70,7 @@ export function AIAssistant({ open, onOpenChange }: AIAssistantProps) {
               </span>
               <div>
                 <h2 className="font-mono text-sm font-bold uppercase text-neon">SudhanshuGPT</h2>
-                <p className="text-xs text-white/55">Gemini portfolio uplink</p>
+                <p className="text-xs text-white/55">AI Portfolio Assistant</p>
               </div>
             </div>
             <button onClick={() => onOpenChange(false)} aria-label="Close assistant" className="text-white/70 hover:text-neon">
@@ -101,7 +101,7 @@ export function AIAssistant({ open, onOpenChange }: AIAssistantProps) {
                   animate={{ opacity: [1, 0.4, 1] }}
                   transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
                 >
-                  SudhanshuGPT is scanning portfolio memory...
+                  Thinking...
                 </motion.span>
               </motion.div>
             )}

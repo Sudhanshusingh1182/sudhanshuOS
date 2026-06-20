@@ -54,6 +54,9 @@ export type CodingProfile = {
   rank: string;
   stats: string;
   href: string;
+  repos?: number;
+  contributions?: string;
+  technologies?: string[];
 };
 
 export type Experience = {

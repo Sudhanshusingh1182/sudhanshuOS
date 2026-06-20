@@ -89,7 +89,7 @@ export function ContactTerminal() {
     addLines([{ type: "input", text: `$ ${cmd}` }]);
     if (t === "help") { addLines(HELP); return; }
     if (t === "whoami") {
-      addLines([{ type: "output", text: "  Sudhanshu Singh · Software Engineer & Competitive Programmer" }]);
+      addLines([{ type: "output", text: "  Sudhanshu Singh · Software Engineer & AI Enthusiast" }]);
       return;
     }
     if (t === "resume") { window.open(portfolioConfig.profile.resume.url, "_blank"); addLines([{ type: "output", text: "  Opening resume..." }]); return; }

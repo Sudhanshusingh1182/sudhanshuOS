@@ -96,7 +96,7 @@ function ExpandedAchievement({ achievement, index, onClose }: {
         </div>
         <h2 className="mt-4 font-mono text-xl font-bold uppercase sm:mt-6 sm:text-2xl">{achievement.title}</h2>
         {achievement.date && (
-          <p className="mt-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-neon/60 sm:mt-2 sm:text-xs">Unlocked {achievement.date}</p>
+          <p className="mt-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-neon/60 sm:mt-2 sm:text-xs">Achieved {achievement.date}</p>
         )}
         <div className="mt-4 h-px bg-gradient-to-r from-transparent via-neon/30 to-transparent sm:mt-6" />
         <p className="mt-4 text-xs leading-relaxed text-white/70 sm:mt-6 sm:text-sm">{achievement.description}</p>
@@ -120,8 +120,8 @@ export function AchievementArena() {
   const [selected, setSelected] = useState<{ achievement: typeof portfolioConfig.achievements[0]; index: number } | null>(null);
 
   return (
-    <SectionFrame id="achievements" eyebrow="Arena" title="Trophy Hall">
-      <p className="mb-6 font-mono text-xs text-white/40">Unlocked achievements — click to inspect</p>
+    <SectionFrame id="achievements" eyebrow="Achievements" title="Achievements">
+      <p className="mb-6 font-mono text-xs text-white/40">Click an achievement to learn more</p>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
         {portfolioConfig.achievements.map((achievement, index) => (
           <AchievementCard

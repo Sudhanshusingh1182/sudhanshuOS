@@ -57,7 +57,7 @@ export function HomeExperience() {
             onClick={() => setAssistantOpen(true)}
             whileHover={{ scale: 1.1, boxShadow: "0 0 32px rgba(34,197,94,0.5)" }}
             whileTap={{ scale: 0.95 }}
-            aria-label="Open SudhanshuGPT"
+            aria-label="Open AI Assistant"
           >
             <Bot size={24} />
           </motion.button>
@@ -76,19 +76,20 @@ export function HomeExperience() {
                   className="absolute inline-flex h-full w-full rounded-full bg-neon"
                 />
               </span>
-              <p className="font-mono text-xs uppercase tracking-[0.28em] text-neon sm:text-sm">System Online</p>
+              <p className="font-mono text-xs uppercase tracking-[0.28em] text-neon sm:text-sm">Welcome</p>
             </div>
 
             <h1 className="mt-4 max-w-4xl font-mono text-4xl font-black uppercase leading-tight neon-text sm:text-5xl md:text-6xl lg:text-7xl">
-              SUDHANSHU OS
+              {portfolioConfig.profile.name}
             </h1>
+            <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.3em] text-neon/50 sm:text-xs">Running on SudhanshuOS</p>
             <div className="mt-1 h-0.5 w-20 bg-neon/60 sm:w-24" />
 
             <p className="mt-5 max-w-2xl text-base text-white/82 sm:text-lg">{portfolioConfig.profile.title}</p>
 
             <div className="mt-8 hud-panel max-w-2xl p-4 sm:p-5">
               <div className="flex items-center gap-2">
-                <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-neon/60">mission.log</span>
+                <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-neon/60">about</span>
                 <span className="h-px flex-1 bg-neon/20" />
               </div>
               <p className="mt-3 text-base font-semibold leading-relaxed sm:text-xl">&quot;{portfolioConfig.profile.mission}&quot;</p>

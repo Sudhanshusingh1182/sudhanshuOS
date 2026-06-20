@@ -11,7 +11,7 @@ const links = [
   { href: "#world", label: "World", icon: Radio },
   { href: "#skills", label: "Skills", icon: Wrench },
   { href: "#projects", label: "Projects", icon: FolderArchive },
-  { href: "#achievements", label: "Arena", icon: Trophy }
+  { href: "#achievements", label: "Achievements", icon: Trophy }
 ];
 
 const container = {
@@ -67,7 +67,7 @@ export function CommandDock({ onTalk }: CommandDockProps) {
           whileTap={{ scale: 0.92 }}
           className="grid h-9 w-9 place-items-center border border-neon bg-neon text-black transition-shadow duration-200 hover:shadow-[0_0_20px_rgba(34,197,94,0.35)] sm:h-11 sm:w-11"
           onClick={onTalk}
-          aria-label="Open SudhanshuGPT"
+          aria-label="Open AI Assistant"
         >
           <Bot size={16} />
         </motion.button>

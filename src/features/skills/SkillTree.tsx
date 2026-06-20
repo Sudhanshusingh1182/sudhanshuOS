@@ -301,7 +301,7 @@ export function SkillTree() {
   };
 
   return (
-    <SectionFrame id="skills" eyebrow="Engineering Workshop" title="Skill Knowledge Graph">
+    <SectionFrame id="skills" eyebrow="Skills" title="Skills & Technologies">
       <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <p className="font-mono text-[10px] text-white/40 sm:text-xs">
           {focusedId

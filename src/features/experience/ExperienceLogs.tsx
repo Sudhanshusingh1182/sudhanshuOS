@@ -33,7 +33,7 @@ export function ExperienceLogs() {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   return (
-    <SectionFrame id="experience" eyebrow="Career Logs" title="Experience Timeline">
+    <SectionFrame id="experience" eyebrow="Experience" title="Experience Timeline">
       <div className="relative">
         <div className="absolute left-[19px] top-0 h-full w-px bg-gradient-to-b from-neon/40 via-neon/20 to-transparent" />
 

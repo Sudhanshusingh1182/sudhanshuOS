@@ -4,7 +4,7 @@ import { portfolioConfig } from "@/data/portfolio.config";
 
 export function InterestsZone() {
   return (
-    <SectionFrame id="interests" eyebrow="Interests Zone" title="Collectible Focus Cards">
+    <SectionFrame id="interests" eyebrow="Interests" title="Areas of Interest">
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {portfolioConfig.interests.map((interest) => (
           <article key={interest.name} className="border border-neon/25 bg-panel/70 p-3 transition hover:border-neon hover:shadow-glow sm:p-4">

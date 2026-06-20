@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "SudhanshuOS v1.0 | Cyberpunk AI Portfolio RPG",
+  title: "Sudhanshu Singh — Software Engineer & AI Enthusiast",
   description:
-    "A cyberpunk operating-system portfolio for Sudhanshu Singh: backend engineering, AI engineering, problem solving, system design, and competitive programming.",
+    "Portfolio of Sudhanshu Singh, a Software Engineer specializing in backend development, AI engineering, and competitive programming.",
   keywords: ["Sudhanshu Singh", "Software Engineer", "Backend Developer", "AI Engineer", "Next.js Portfolio"],
   authors: [{ name: "Sudhanshu Singh" }],
   openGraph: {
-    title: "SudhanshuOS v1.0",
-    description: "Explore an AI engineer portfolio as a cyberpunk RPG operating system.",
+    title: "Sudhanshu Singh — Portfolio",
+    description: "Software engineer portfolio featuring backend systems, AI applications, and competitive programming.",
     type: "website"
   },
   robots: {
