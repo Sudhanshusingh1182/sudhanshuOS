@@ -222,8 +222,9 @@ export function AudioFeed() {
                     src={track.albumArt || "/api/placeholder"}
                     alt={track.title}
                     initial={{ opacity: 0, scale: 1.1 }}
-                    animate={{ opacity: artLoaded ? 1 : 0, scale: 1 }}
+                    animate={{ opacity: 1, scale: 1 }}
                     onLoad={() => setArtLoaded(true)}
+                    onError={() => setArtLoaded(true)}
                     className="h-full w-full object-cover"
                   />
                 </AnimatePresence>
