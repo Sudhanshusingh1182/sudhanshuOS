@@ -139,7 +139,7 @@ export function EducationJourney() {
   const items = portfolioConfig.education;
 
   return (
-    <SectionFrame id="education" eyebrow="Academic Path" title="Knowledge Journey">
+    <SectionFrame id="education" eyebrow="Education" title="Education">
       <div className="relative">
         <div className="absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 bg-gradient-to-b from-neon/30 via-neon/15 to-transparent md:block" />
         <div className="absolute left-1/2 top-0 hidden h-3 w-3 -translate-x-1/2 rounded-full border border-neon bg-neon/20 shadow-[0_0_20px_rgba(34,197,94,0.3)] md:block" />

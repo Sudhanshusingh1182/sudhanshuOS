@@ -12,22 +12,12 @@ export function CharacterDashboard() {
     <motion.aside initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} className="hud-panel p-4 sm:p-5">
       <div className="flex items-start justify-between gap-3 sm:gap-4">
         <div className="min-w-0">
-          <p className="font-mono text-[10px] uppercase tracking-[0.26em] text-neon sm:text-xs">Character Profile</p>
+          <p className="font-mono text-[10px] uppercase tracking-[0.26em] text-neon sm:text-xs">Profile</p>
           <h2 className="mt-2 text-2xl font-black sm:text-3xl truncate">{profile.name}</h2>
           <p className="text-sm text-white/60 sm:text-base">{profile.className}</p>
         </div>
         <div className="grid h-12 w-12 shrink-0 place-items-center border border-neon bg-neon/10 text-neon shadow-glow sm:h-16 sm:w-16">
           <Shield size={22} />
-        </div>
-      </div>
-      <div className="mt-4 grid grid-cols-2 gap-2 sm:mt-6 sm:gap-3">
-        <div className="border border-white/10 p-2 sm:p-3">
-          <p className="text-[10px] uppercase text-white/45 sm:text-xs">Level</p>
-          <p className="font-mono text-2xl text-neon sm:text-3xl">{profile.level}</p>
-        </div>
-        <div className="border border-white/10 p-2 sm:p-3">
-          <p className="text-[10px] uppercase text-white/45 sm:text-xs">XP Sync</p>
-          <p className="font-mono text-2xl text-neon sm:text-3xl">{profile.xp}%</p>
         </div>
       </div>
       <div className="mt-4 space-y-3 sm:mt-6 sm:space-y-4">
@@ -45,7 +35,7 @@ export function CharacterDashboard() {
       </div>
       <div className="mt-4 flex items-center gap-2 border border-neon/25 p-2.5 text-xs text-white/70 sm:mt-6 sm:p-3 sm:text-sm">
         <Sparkles className="text-neon shrink-0" size={16} />
-        Mission alignment: Backend + AI + Product Impact.
+        Focus: Backend Systems, AI, and Product Engineering.
       </div>
     </motion.aside>
   );

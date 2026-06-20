@@ -16,7 +16,7 @@ type GeminiResponse = {
 };
 
 export const accessDeniedMessage =
-  "Access Denied.\n\nI am SudhanshuGPT, the AI operating inside SudhanshuOS. My knowledge is restricted to information about Sudhanshu Singh, including his experience, projects, skills, achievements, education, resume, contact details, and professional background.\n\nTry asking me something about the engineer running this system.";
+  "I can only answer questions about Sudhanshu Singh's experience, projects, skills, achievements, education, resume, and contact details. Try asking about his work or background.";
 
 const scopeKeywords = [
   "sudhanshu",
@@ -157,15 +157,16 @@ export async function askSudhanshuGPT(question: string) {
   const model = process.env.GEMINI_MODEL ?? "gemini-2.5-flash-lite";
 
   if (!apiKey) {
-    return "Gemini uplink is not configured yet. Add GEMINI_API_KEY to the environment so SudhanshuGPT can answer from the portfolio data.";
+    return "AI assistant is not configured yet. Add GEMINI_API_KEY to the environment so the assistant can answer from the portfolio data.";
   }
 
   const prompt = [
-    "You are SudhanshuGPT, the AI representative inside SudhanshuOS.",
+    "You are an AI assistant for Sudhanshu Singh's portfolio.",
     "Answer only questions about Sudhanshu Singh using the provided portfolio context.",
     "Do not invent details. If the requested information is not present, say that it is not available in the current portfolio data.",
     `If asked about the resume, mention that it is available from the Download Resume button in the Hero section. The direct resume URL is: ${portfolioConfig.profile.resume.url}`,
     "Keep responses concise, recruiter-friendly, and lightly cyberpunk-themed without being confusing.",
+    "When describing skills or technologies, do not include numeric skill levels, percentages, or ratings.",
     "If asked why someone should hire him, highlight his strengths from the portfolio data: backend & AI expertise, strong problem-solving, projects, and achievements.",
     "If asked about LinkedIn or X/Twitter, provide the relevant profile URL from the social links.",
     "",
@@ -190,11 +191,11 @@ export async function askSudhanshuGPT(question: string) {
   if (!response.ok) {
     const errorBody = await response.text().catch(() => "unknown");
     console.error(`Gemini API error (${response.status}): ${errorBody}`);
-    return "Gemini uplink failed. SudhanshuGPT could not generate a response right now.";
+    return "AI assistant is temporarily unavailable. Please try again later.";
   }
 
   const data = (await response.json()) as GeminiResponse;
   const text = data.candidates?.[0]?.content?.parts?.map((part) => part.text ?? "").join("").trim();
 
-  return text || "No portfolio-backed answer was generated. Try asking about Sudhanshu's projects, experience, skills, resume, or contact details.";
+  return text || "I couldn't find an answer to that. Try asking about projects, skills, experience, or contact details.";
 }

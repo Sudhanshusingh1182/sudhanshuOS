@@ -16,24 +16,24 @@ type TrackInfo = {
 const EMPTY: TrackInfo = { configured: false, isPlaying: false, title: "", artist: "", albumArt: "", songUrl: "" };
 
 const PLAYING_STATUSES = [
-  "NEURAL STREAM DETECTED",
-  "AUDIO FEED ONLINE",
-  "CURRENT COGNITIVE INPUT",
-  "FOCUS MODE ACTIVE",
-  "SIGNAL ACQUIRED",
+  "Currently Playing",
+  "Now Streaming",
+  "Track Active",
+  "Listening",
+  "Live",
 ];
 
 const RECENT_STATUSES = [
-  "LAST DETECTED SIGNAL",
-  "RECENT AUDIO LOG",
-  "SIGNAL MEMORY RECALL",
-  "NEURAL ECHO",
+  "Last Played",
+  "Recent Track",
+  "Previously Played",
+  "History",
 ];
 
 const IDLE_STATUSES = [
-  "AUDIO FEED STANDBY",
-  "AWAITING INPUT SIGNAL",
-  "NEURAL IDLE",
+  "No Track Playing",
+  "Waiting...",
+  "Idle",
 ];
 
 function pickStatus(isPlaying: boolean, hasTrack: boolean, seed: string): string {
@@ -129,7 +129,7 @@ export function AudioFeed() {
           <span className="relative inline-flex h-2 w-2 rounded-full bg-neon" />
         </motion.span>
         <span className="font-mono text-[8px] font-bold uppercase tracking-[0.2em] text-neon sm:text-[10px]">
-          NEURAL AUDIO FEED
+          CURRENTLY LISTENING
         </span>
         <span className="h-px flex-1 bg-neon/15" />
       </div>

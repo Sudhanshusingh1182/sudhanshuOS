@@ -6,7 +6,7 @@ export const portfolioConfig: PortfolioConfig = {
     className: "Software Engineer",
     level: 42,
     title: "Software Engineer | Backend Developer | AI Enthusiast",
-    mission: "Become an AI Engineer and build impactful products.",
+    mission: "Building scalable backend systems and AI-powered applications.",
     location: "India",
     email: "sudhanshu.sde@gmail.com",
     resume: {
@@ -35,7 +35,7 @@ export const portfolioConfig: PortfolioConfig = {
     "Competitive Programming",
     "Projects Database",
     "Experience Logs",
-    "Mission Archive"
+    "Project Archive"
   ],
   skills: [
     {
@@ -280,11 +280,12 @@ export const portfolioConfig: PortfolioConfig = {
     }
   ],
   codingProfiles: [
-    { platform: "GitHub", username: "Sudhanshusingh1182", rating: "35 Repositories", rank: "Active Builder", stats: "35+ repositories with active contributions", href: "https://github.com/Sudhanshusingh1182" },
-    { platform: "LeetCode", username: "sudhanshu1182", rating: "Knight", rank: "Algorithm Arena", stats: "700+ problems solved", href: "https://leetcode.com/u/sudhanshu1182" },
-    { platform: "Codeforces", username: "sudhanshu_singh1182", rating: "Specialist", rank: "Contest Division", stats: "500+ problems solved", href: "https://codeforces.com/profile/sudhanshu_singh1182" },
-    { platform: "CodeChef", username: "sudhanshu_1182", rating: "3 Star", rank: "Rated Coder", stats: "Regular contest participant", href: "https://www.codechef.com/users/sudhanshu_1182" },
-    { platform: "AtCoder", username: "sudhanshu_s1182", rating: "5 Kyu", rank: "Competitive Programmer", stats: "Active problem solver", href: "https://atcoder.jp/users/sudhanshu_s1182" }
+    { platform: "GitHub", username: "Sudhanshusingh1182", rating: "35 Repositories", rank: "Active Developer", stats: "200+ contributions", href: "https://github.com/Sudhanshusingh1182", repos: 35, contributions: "200+", technologies: ["Java", "Spring Boot", "Python", "Next.js", "TypeScript", "JavaScript"] },
+    { platform: "LeetCode", username: "sudhanshu1182", rating: "Knight", rank: "Peak 1959", stats: "700+ problems solved", href: "https://leetcode.com/u/sudhanshu1182" },
+    { platform: "Codeforces", username: "sudhanshu_singh1182", rating: "Specialist", rank: "Peak 1577", stats: "500+ problems solved", href: "https://codeforces.com/profile/sudhanshu_singh1182" },
+    { platform: "CodeChef", username: "sudhanshu_1182", rating: "3 Star", rank: "Peak 1673", stats: "100+ problems solved", href: "https://www.codechef.com/users/sudhanshu_1182" },
+    { platform: "AtCoder", username: "sudhanshu_s1182", rating: "5 Kyu", rank: "Active", stats: "Contest participant", href: "https://atcoder.jp/users/sudhanshu_s1182" },
+    { platform: "GeeksforGeeks", username: "Sudhanshusingh1182", rating: "600+ Solved", rank: "Consistent", stats: "600+ problems solved", href: "https://auth.geeksforgeeks.org/user/Sudhanshusingh1182" }
   ],
   experience: [
     {
@@ -357,17 +358,17 @@ export const portfolioConfig: PortfolioConfig = {
   ],
   world: {
     buildings: [
-      { id: "experience", name: "Experience Nexus", section: "Career Logs", description: "Professional journey and engineering milestones.", icon: "Building2" },
-      { id: "education", name: "Knowledge Hub", section: "Education Journey", description: "Academic achievements and learning path.", icon: "GraduationCap" },
-      { id: "ai", name: "AI Research Lab", section: "Project Archive", description: "AI missions and experiments.", icon: "Bot" },
-      { id: "skills", name: "Engineering Workshop", section: "Skill Tree", description: "Unlocked engineering abilities and proficiencies.", icon: "Wrench" },
-      { id: "arena", name: "Command Center", section: "Coding Arena", description: "Competitive profiles and ranking achievements.", icon: "Trophy" },
-      { id: "projects", name: "Project Galaxy", section: "Project Archive", description: "Mission cards and build records.", icon: "FolderArchive" },
-      { id: "contact", name: "Communication Hub", section: "Contact Terminal", description: "Secure recruiter transmission.", icon: "Mail" }
+      { id: "experience", name: "Experience", section: "Experience", description: "Professional journey and engineering milestones.", icon: "Building2" },
+      { id: "education", name: "Education", section: "Education", description: "Academic achievements and learning path.", icon: "GraduationCap" },
+      { id: "ai", name: "AI Projects", section: "Projects", description: "AI-powered applications and experiments.", icon: "Bot" },
+      { id: "skills", name: "Skills", section: "Skills", description: "Technical abilities and proficiencies.", icon: "Wrench" },
+      { id: "arena", name: "Coding Profiles", section: "Coding Profiles", description: "Competitive programming profiles and rankings.", icon: "Trophy" },
+      { id: "projects", name: "Projects", section: "Projects", description: "Software projects and build records.", icon: "FolderArchive" },
+      { id: "contact", name: "Contact", section: "Contact", description: "Get in touch with Sudhanshu.", icon: "Mail" }
     ]
   },
   assistant: {
-    greeting: "SudhanshuGPT online. I represent Sudhanshu Singh inside SudhanshuOS. Ask me about his work, projects, skills, achievements, education, resume, or contact details.",
+    greeting: "Hi, I'm the portfolio assistant. Ask me about Sudhanshu's experience, projects, skills, achievements, education, and background.",
     suggestedQuestions: [
       "Tell me about Sudhanshu",
       "Show AI projects",

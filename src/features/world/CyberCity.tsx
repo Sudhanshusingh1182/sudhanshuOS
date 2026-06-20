@@ -47,7 +47,7 @@ export function CyberCity() {
   const segAngle = 360 / buildings.length;
 
   return (
-    <SectionFrame id="world" eyebrow="Interactive Cyberpunk City" title="System Map">
+    <SectionFrame id="world" eyebrow="Explore" title="Overview">
       <div className="grid gap-6 lg:grid-cols-[1.3fr_.7fr] items-center">
         <div className="relative border border-neon/25 bg-black/40 overflow-hidden max-w-full"
           style={{ width: SVG_SIZE * scale, height: SVG_SIZE * scale }}>
@@ -113,7 +113,7 @@ export function CyberCity() {
         </div>
 
         <aside className="hud-panel p-4 sm:p-5">
-          <p className="font-mono text-xs uppercase tracking-[0.25em] text-neon">Sector Selected</p>
+          <p className="font-mono text-xs uppercase tracking-[0.25em] text-neon">Selected</p>
           <h3 className="mt-3 text-3xl font-black">{active.name}</h3>
           <p className="mt-2 text-neon">{active.section}</p>
           <p className="mt-5 text-white/68">{active.description}</p>
@@ -121,7 +121,7 @@ export function CyberCity() {
             className="mt-8 inline-block border border-neon bg-neon px-4 py-3 font-mono text-sm font-bold uppercase text-black"
             href={`#${active.id === "ai" ? "projects" : active.id}`}
           >
-            Enter Sector
+            View Section
           </a>
         </aside>
       </div>

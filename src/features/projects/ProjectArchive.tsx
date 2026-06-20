@@ -47,7 +47,7 @@ function ProjectCard({ project, index, total, selected, onSelect }: {
         <div className="absolute -right-8 -top-8 h-24 w-24 rounded-full border border-neon/10 opacity-0 transition-all duration-500 group-hover:opacity-100" style={{ boxShadow: "0 0 60px rgba(34,197,94,0.08)" }} />
         <div className="flex flex-wrap items-start justify-between gap-2 sm:gap-3">
           <div className="min-w-0">
-            <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-neon/70">{project.category} Mission</p>
+            <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-neon/70">{project.category}</p>
             <h3 className="mt-2 text-lg font-black sm:text-xl lg:text-2xl truncate">{project.name}</h3>
           </div>
           <span className={`shrink-0 border px-2 py-1 font-mono text-[10px] sm:px-3 sm:py-1 sm:text-xs ${
@@ -109,7 +109,7 @@ function ExpandedProject({ project, onClose }: { project: Project; onClose: () =
         <button onClick={onClose} className="absolute right-3 top-3 grid h-8 w-8 place-items-center border border-white/15 text-white/50 hover:border-neon hover:text-neon sm:right-4 sm:top-4 sm:h-9 sm:w-9">
           <X size={16} />
         </button>
-        <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-neon/70 sm:text-xs">{project.category} Mission</p>
+        <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-neon/70 sm:text-xs">{project.category}</p>
         <h2 className="mt-2 text-2xl font-black sm:text-3xl">{project.name}</h2>
         <div className="mt-2 flex flex-wrap items-center gap-3">
           <span className={`border px-2 py-1 font-mono text-[10px] sm:px-3 sm:text-xs ${
@@ -179,7 +179,7 @@ export function ProjectArchive() {
   }, [filter, search, projects]);
 
   return (
-    <SectionFrame id="projects" eyebrow="Project Galaxy" title="Mission Database">
+    <SectionFrame id="projects" eyebrow="Projects" title="Project Archive">
       <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
         <div className="flex flex-wrap gap-1.5 sm:gap-2">
           {categories.map((item) => (
@@ -210,7 +210,7 @@ export function ProjectArchive() {
 
       {filtered.length === 0 ? (
         <div className="flex min-h-[200px] items-center justify-center">
-          <p className="font-mono text-sm text-white/30">No missions match your query.</p>
+          <p className="font-mono text-sm text-white/30">No projects match your search.</p>
         </div>
       ) : (
         <div className="relative" style={{ perspective: "1200px" }}>

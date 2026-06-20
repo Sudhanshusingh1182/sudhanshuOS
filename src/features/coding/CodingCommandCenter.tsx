@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, Code, TrendingUp, Users, Star, Activity, Cpu } from "lucide-react";
+import { ExternalLink, Code, TrendingUp, Users, Star, Activity, Cpu, BookOpen } from "lucide-react";
 import { SectionFrame } from "@/components/SectionFrame";
 import { portfolioConfig } from "@/data/portfolio.config";
 
@@ -12,7 +12,8 @@ const P_ICONS: Record<string, React.ReactNode> = {
   LeetCode: <TrendingUp size={20} />,
   Codeforces: <Users size={20} />,
   CodeChef: <Star size={20} />,
-  AtCoder: <Activity size={20} />
+  AtCoder: <Activity size={20} />,
+  GeeksforGeeks: <BookOpen size={20} />
 };
 
 /* ─── Config ─── */
@@ -22,11 +23,12 @@ interface OrbitConfig {
 const PROFILES = portfolioConfig.codingProfiles;
 const ACHIEVEMENTS = portfolioConfig.achievements;
 const ORBITS: OrbitConfig[] = [
-  { radiusX: 170, radiusY: 135, speed: 0.003, angle0: 0 },    // GitHub
-  { radiusX: 215, radiusY: 175, speed: 0.004, angle0: 72 },   // LeetCode
-  { radiusX: 255, radiusY: 210, speed: 0.002, angle0: 144 },  // Codeforces
-  { radiusX: 290, radiusY: 240, speed: 0.005, angle0: 216 },  // CodeChef
-  { radiusX: 320, radiusY: 265, speed: 0.003, angle0: 288 }   // AtCoder
+  { radiusX: 155, radiusY: 120, speed: 0.003, angle0: 0 },    // GitHub
+  { radiusX: 195, radiusY: 155, speed: 0.004, angle0: 60 },   // LeetCode
+  { radiusX: 235, radiusY: 190, speed: 0.002, angle0: 120 },  // Codeforces
+  { radiusX: 270, radiusY: 220, speed: 0.005, angle0: 180 },  // CodeChef
+  { radiusX: 300, radiusY: 245, speed: 0.003, angle0: 240 },  // AtCoder
+  { radiusX: 325, radiusY: 265, speed: 0.002, angle0: 300 }   // GeeksforGeeks
 ];
 
 /* ─── Platform achievements map ─── */
@@ -35,7 +37,8 @@ const PLATFORM_ACHIEVEMENTS: Record<string, typeof ACHIEVEMENTS> = {
   LeetCode: ACHIEVEMENTS.filter((a) => a.title.includes("LeetCode")),
   Codeforces: ACHIEVEMENTS.filter((a) => a.title.includes("Codeforces")),
   CodeChef: ACHIEVEMENTS.filter((a) => a.title.includes("CodeChef")),
-  AtCoder: []
+  AtCoder: [],
+  GeeksforGeeks: []
 };
 
 /* ─── Animated counter ─── */
@@ -99,7 +102,7 @@ function CentralCore() {
       {/* Label */}
       <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 text-center">
         <p className="font-mono text-xs font-bold text-neon whitespace-nowrap">Sudhanshu Singh</p>
-        <p className="font-mono text-[8px] text-white/25 mt-0.5">Intelligence Core</p>
+        <p className="font-mono text-[8px] text-white/25 mt-0.5">Coding Profiles</p>
       </div>
     </div>
   );
@@ -147,67 +150,132 @@ function PlatformNode({
   );
 }
 
-/* ─── Focus Detail Panel ─── */
-function FocusPanel({ profile, onClose }: { profile: typeof PROFILES[0]; onClose: () => void }) {
-  const achievements = getAchievements(profile.platform);
+/* ─── Platform display config ─── */
+type StatField = { label: string; key: "rating" | "rank" | "stats" };
+
+const PLATFORM_FIELDS: Record<string, StatField[]> = {
+  LeetCode: [
+    { label: "Title", key: "rating" },
+    { label: "Peak Rating", key: "rank" },
+    { label: "Problems Solved", key: "stats" }
+  ],
+  Codeforces: [
+    { label: "Title", key: "rating" },
+    { label: "Peak Rating", key: "rank" },
+    { label: "Problems Solved", key: "stats" }
+  ],
+  CodeChef: [
+    { label: "Title", key: "rating" },
+    { label: "Peak Rating", key: "rank" },
+    { label: "Problems Solved", key: "stats" }
+  ],
+  AtCoder: [
+    { label: "Title", key: "rating" },
+    { label: "Status", key: "rank" },
+    { label: "Activity", key: "stats" }
+  ],
+  GeeksforGeeks: [
+    { label: "Problems Solved", key: "rating" },
+    { label: "Status", key: "rank" },
+    { label: "Details", key: "stats" }
+  ]
+};
+
+/* ─── GitHub Detail Panel ─── */
+function GitHubPanel({ profile, onClose }: { profile: typeof PROFILES[0]; onClose: () => void }) {
   return (
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.3 }}
-        className="fixed inset-0 z-[70 flex items-center justify-center bg-black/80 backdrop-blur-sm p-3 sm:p-4"
-        onClick={onClose}
-      >
-        <motion.div
-          initial={{ scale: 0.85, y: 20, opacity: 0 }}
-          animate={{ scale: 1, y: 0, opacity: 1 }}
-          exit={{ scale: 0.85, y: 20, opacity: 0 }}
-          transition={{ type: "spring", damping: 25, stiffness: 300 }}
-          className="relative w-full max-w-lg overflow-hidden mx-2 sm:mx-0"
-          onClick={(e) => e.stopPropagation()}
-          style={{
-            border: "1px solid rgba(34,197,94,0.3)",
-            background: "linear-gradient(145deg, rgba(16,20,16,0.98), rgba(5,5,5,0.99))",
-            boxShadow: "0 0 60px rgba(34,197,94,0.12)"
-          }}
-        >
-          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-neon/60 to-transparent" />
-          <div className="relative z-10 p-5 sm:p-8">
-            <button onClick={onClose} className="absolute right-3 top-3 grid h-8 w-8 place-items-center border border-white/10 text-white/40 hover:border-neon hover:text-neon sm:right-4 sm:top-4 sm:h-9 sm:w-9">
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 4L12 12M12 4L4 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
-            </button>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}
+      className="fixed inset-0 z-[70 flex items-center justify-center bg-black/80 backdrop-blur-sm p-3 sm:p-4" onClick={onClose}>
+      <motion.div initial={{ scale: 0.85, y: 20, opacity: 0 }} animate={{ scale: 1, y: 0, opacity: 1 }} exit={{ scale: 0.85, y: 20, opacity: 0 }}
+        transition={{ type: "spring", damping: 25, stiffness: 300 }}
+        className="relative w-full max-w-lg overflow-hidden mx-2 sm:mx-0" onClick={(e) => e.stopPropagation()}
+        style={{ border: "1px solid rgba(34,197,94,0.3)", background: "linear-gradient(145deg, rgba(16,20,16,0.98), rgba(5,5,5,0.99))", boxShadow: "0 0 60px rgba(34,197,94,0.12)" }}>
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-neon/60 to-transparent" />
+        <div className="relative z-10 p-5 sm:p-8">
+          <button onClick={onClose} className="absolute right-3 top-3 grid h-8 w-8 place-items-center border border-white/10 text-white/40 hover:border-neon hover:text-neon sm:right-4 sm:top-4 sm:h-9 sm:w-9">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 4L12 12M12 4L4 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
+          </button>
+          <div className="flex items-center gap-3 sm:gap-4">
+            <div className="grid h-12 w-12 shrink-0 place-items-center border border-neon/30 bg-neon/8 text-neon sm:h-14 sm:w-14" style={{ boxShadow: "0 0 24px rgba(34,197,94,0.15)" }}>
+              {P_ICONS[profile.platform] || <Cpu size={22} />}
+            </div>
+            <div className="min-w-0">
+              <h2 className="font-mono text-xl font-bold uppercase text-neon sm:text-2xl truncate">GitHub</h2>
+              <p className="font-mono text-xs text-white/50 mt-0.5 sm:text-sm truncate">{profile.username}</p>
+            </div>
+          </div>
 
-            <div className="flex items-center gap-3 sm:gap-4">
-              <div className="grid h-12 w-12 shrink-0 place-items-center border border-neon/30 bg-neon/8 text-neon sm:h-14 sm:w-14" style={{ boxShadow: "0 0 24px rgba(34,197,94,0.15)" }}>
-                {P_ICONS[profile.platform] || <Cpu size={22} />}
-              </div>
-              <div className="min-w-0">
-                <h2 className="font-mono text-xl font-bold uppercase text-neon sm:text-2xl truncate">{profile.platform}</h2>
-                <p className="font-mono text-xs text-white/50 mt-0.5 sm:text-sm truncate">{profile.username}</p>
+          <div className="mt-4 grid grid-cols-2 gap-2 sm:mt-6 sm:gap-3">
+            <div className="border border-white/8 p-2.5 sm:p-3.5">
+              <p className="font-mono text-[8px] uppercase tracking-[0.15em] text-white/35 sm:text-[9px]">Repositories</p>
+              <p className="mt-1 font-mono text-lg font-bold text-neon sm:text-xl break-words leading-tight">{profile.repos}</p>
+            </div>
+            <div className="border border-white/8 p-2.5 sm:p-3.5">
+              <p className="font-mono text-[8px] uppercase tracking-[0.15em] text-white/35 sm:text-[9px]">Contributions</p>
+              <p className="mt-1 font-mono text-lg font-bold text-white sm:text-xl break-words leading-tight">{profile.contributions}</p>
+            </div>
+          </div>
+
+          {profile.technologies && profile.technologies.length > 0 && (
+            <div className="mt-4 border-t border-white/5 pt-3 sm:mt-5 sm:pt-4">
+              <p className="font-mono text-[8px] uppercase tracking-[0.15em] text-neon/50 mb-2 sm:text-[9px] sm:mb-3">Featured Technologies</p>
+              <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                {profile.technologies.map((tech) => (
+                  <span key={tech} className="border border-neon/20 bg-neon/5 px-2 py-0.5 font-mono text-[9px] text-neon/80 sm:px-2.5 sm:py-1 sm:text-[10px]">
+                    {tech}
+                  </span>
+                ))}
               </div>
             </div>
+          )}
 
-            <div className="mt-4 grid grid-cols-2 gap-2 sm:mt-6 sm:gap-3">
-              <div className="border border-white/8 p-2.5 sm:p-3.5">
-                <p className="font-mono text-[8px] uppercase tracking-[0.15em] text-white/35 sm:text-[9px]">Rating</p>
-                <p className="mt-1 font-mono text-xl font-bold text-neon sm:text-2xl">{profile.rating}</p>
-              </div>
-              <div className="border border-white/8 p-2.5 sm:p-3.5">
-                <p className="font-mono text-[8px] uppercase tracking-[0.15em] text-white/35 sm:text-[9px]">Rank</p>
-                <p className="mt-1 font-mono text-xl font-bold text-white sm:text-2xl">{profile.rank}</p>
-              </div>
-              <div className="border border-white/8 p-2.5 sm:p-3.5">
-                <p className="font-mono text-[8px] uppercase tracking-[0.15em] text-white/35 sm:text-[9px]">Status</p>
-                <p className="mt-1 font-mono text-sm font-bold text-neon/80 sm:text-lg">Active</p>
-              </div>
-              <div className="border border-white/8 p-2.5 sm:p-3.5">
-                <p className="font-mono text-[8px] uppercase tracking-[0.15em] text-white/35 sm:text-[9px]">Activity</p>
-                <p className="mt-1 font-mono text-xs text-white/60 sm:text-sm">{profile.stats}</p>
-              </div>
+          <motion.a href={profile.href} target="_blank" rel="noreferrer"
+            whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
+            className="mt-4 flex items-center justify-center gap-2 border border-neon bg-neon px-4 py-2.5 font-mono text-xs font-bold uppercase text-black transition-all duration-200 hover:shadow-glow sm:mt-6 sm:px-5 sm:py-3 sm:text-sm">
+            <ExternalLink size={14} /> View GitHub Profile
+          </motion.a>
+        </div>
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-neon/30 to-transparent" />
+      </motion.div>
+    </motion.div>
+  );
+}
+
+/* ─── Platform Detail Panel ─── */
+function PlatformPanel({ profile, onClose }: { profile: typeof PROFILES[0]; onClose: () => void }) {
+  const achievements = getAchievements(profile.platform);
+  const fields = PLATFORM_FIELDS[profile.platform] ?? [];
+  return (
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}
+      className="fixed inset-0 z-[70 flex items-center justify-center bg-black/80 backdrop-blur-sm p-3 sm:p-4" onClick={onClose}>
+      <motion.div initial={{ scale: 0.85, y: 20, opacity: 0 }} animate={{ scale: 1, y: 0, opacity: 1 }} exit={{ scale: 0.85, y: 20, opacity: 0 }}
+        transition={{ type: "spring", damping: 25, stiffness: 300 }}
+        className="relative w-full max-w-lg overflow-hidden mx-2 sm:mx-0" onClick={(e) => e.stopPropagation()}
+        style={{ border: "1px solid rgba(34,197,94,0.3)", background: "linear-gradient(145deg, rgba(16,20,16,0.98), rgba(5,5,5,0.99))", boxShadow: "0 0 60px rgba(34,197,94,0.12)" }}>
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-neon/60 to-transparent" />
+        <div className="relative z-10 p-5 sm:p-8">
+          <button onClick={onClose} className="absolute right-3 top-3 grid h-8 w-8 place-items-center border border-white/10 text-white/40 hover:border-neon hover:text-neon sm:right-4 sm:top-4 sm:h-9 sm:w-9">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 4L12 12M12 4L4 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
+          </button>
+          <div className="flex items-center gap-3 sm:gap-4">
+            <div className="grid h-12 w-12 shrink-0 place-items-center border border-neon/30 bg-neon/8 text-neon sm:h-14 sm:w-14" style={{ boxShadow: "0 0 24px rgba(34,197,94,0.15)" }}>
+              {P_ICONS[profile.platform] || <Cpu size={22} />}
             </div>
+            <div className="min-w-0">
+              <h2 className="font-mono text-xl font-bold uppercase text-neon sm:text-2xl truncate">{profile.platform}</h2>
+              <p className="font-mono text-xs text-white/50 mt-0.5 sm:text-sm truncate">{profile.username}</p>
+            </div>
+          </div>
 
-          {/* Achievements */}
+          <div className={`mt-4 grid gap-2 sm:mt-6 sm:gap-3 ${fields.length === 2 ? 'grid-cols-2' : 'grid-cols-2 sm:grid-cols-3'}`}>
+            {fields.map((field) => (
+              <div key={field.key} className="border border-white/8 p-2.5 sm:p-3.5">
+                <p className="font-mono text-[8px] uppercase tracking-[0.15em] text-white/35 sm:text-[9px]">{field.label}</p>
+                <p className={`mt-1 font-mono font-bold leading-tight break-words ${field.key === 'stats' ? 'text-sm text-white/80 sm:text-base' : 'text-base text-white sm:text-lg'}`}>{profile[field.key]}</p>
+              </div>
+            ))}
+          </div>
+
           {achievements.length > 0 && (
             <div className="mt-4 border-t border-white/5 pt-3 sm:mt-5 sm:pt-4">
               <p className="font-mono text-[8px] uppercase tracking-[0.15em] text-neon/50 mb-2 sm:text-[9px] sm:mb-3">Achievements</p>
@@ -223,8 +291,7 @@ function FocusPanel({ profile, onClose }: { profile: typeof PROFILES[0]; onClose
 
           <motion.a href={profile.href} target="_blank" rel="noreferrer"
             whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
-            className="mt-4 flex items-center justify-center gap-2 border border-neon bg-neon px-4 py-2.5 font-mono text-xs font-bold uppercase text-black transition-all duration-200 hover:shadow-glow sm:mt-6 sm:px-5 sm:py-3 sm:text-sm"
-          >
+            className="mt-4 flex items-center justify-center gap-2 border border-neon bg-neon px-4 py-2.5 font-mono text-xs font-bold uppercase text-black transition-all duration-200 hover:shadow-glow sm:mt-6 sm:px-5 sm:py-3 sm:text-sm">
             <ExternalLink size={14} /> Visit Profile
           </motion.a>
         </div>
@@ -232,6 +299,14 @@ function FocusPanel({ profile, onClose }: { profile: typeof PROFILES[0]; onClose
       </motion.div>
     </motion.div>
   );
+}
+
+/* ─── Adaptive Focus Panel ─── */
+function FocusPanel({ profile, onClose }: { profile: typeof PROFILES[0]; onClose: () => void }) {
+  if (profile.platform === "GitHub") {
+    return <GitHubPanel profile={profile} onClose={onClose} />;
+  }
+  return <PlatformPanel profile={profile} onClose={onClose} />;
 }
 
 /* ─── Main Component ─── */
@@ -262,11 +337,11 @@ export function CodingCommandCenter() {
   }, []);
 
   return (
-    <SectionFrame id="arena" eyebrow="Coding Profiles" title="Intelligence Core">
+    <SectionFrame id="arena" eyebrow="Coding Profiles" title="Coding Profiles">
       <p className="mb-6 font-mono text-[10px] text-white/35 text-center sm:text-xs">
         {hoveredIdx !== null
-          ? `Scanning ${PROFILES[hoveredIdx].platform} — tap to inspect`
-          : "Orbital intelligence hub · Hover to scan · Tap to inspect"}
+          ? `Click to view ${PROFILES[hoveredIdx].platform} profile`
+          : "Hover over a platform to view details"}
       </p>
 
       <div className="relative w-full overflow-x-auto" style={{ minHeight: orbitScale < 1 ? 300 : 580 }}>
@@ -311,7 +386,7 @@ export function CodingCommandCenter() {
       <div className="mt-8 flex items-center justify-center gap-3">
         <motion.div animate={{ opacity: [0.4, 1, 0.4] }} transition={{ duration: 2, repeat: Infinity }} className="h-1.5 w-1.5 rounded-full bg-neon" />
         <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-white/25">
-          {hoveredIdx !== null ? `Linked — ${PROFILES[hoveredIdx].platform}` : "5 terminals orbiting · All systems nominal"}
+          {hoveredIdx !== null ? `Viewing — ${PROFILES[hoveredIdx].platform}` : "6 platforms connected"}
         </span>
         <motion.div animate={{ opacity: [0.4, 1, 0.4] }} transition={{ duration: 2, repeat: Infinity, delay: 0.5 }} className="h-1.5 w-1.5 rounded-full bg-neon" />
       </div>
