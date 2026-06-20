@@ -22,11 +22,11 @@ interface OrbitConfig {
 const PROFILES = portfolioConfig.codingProfiles;
 const ACHIEVEMENTS = portfolioConfig.achievements;
 const ORBITS: OrbitConfig[] = [
-  { radiusX: 180, radiusY: 130, speed: 0.003, angle0: 0 },
-  { radiusX: 240, radiusY: 180, speed: 0.004, angle0: 72 },
-  { radiusX: 290, radiusY: 220, speed: 0.002, angle0: 144 },
-  { radiusX: 220, radiusY: 165, speed: 0.005, angle0: 216 },
-  { radiusX: 310, radiusY: 240, speed: 0.003, angle0: 288 }
+  { radiusX: 170, radiusY: 135, speed: 0.003, angle0: 0 },    // GitHub
+  { radiusX: 215, radiusY: 175, speed: 0.004, angle0: 72 },   // LeetCode
+  { radiusX: 255, radiusY: 210, speed: 0.002, angle0: 144 },  // Codeforces
+  { radiusX: 290, radiusY: 240, speed: 0.005, angle0: 216 },  // CodeChef
+  { radiusX: 320, radiusY: 265, speed: 0.003, angle0: 288 }   // AtCoder
 ];
 
 /* ─── Platform achievements map ─── */
@@ -69,7 +69,7 @@ function getAchievements(platform: string) {
 /* ─── Central Core ─── */
 function CentralCore() {
   return (
-    <div className="absolute" style={{ left: "50%", top: "45%", transform: "translate(-50%, -50%)", zIndex: 20 }}>
+    <div className="absolute" style={{ left: "50%", top: "50%", transform: "translate(-50%, -50%)", zIndex: 20 }}>
       {/* Outer ring 1 */}
       <motion.div className="absolute rounded-full border border-neon/20"
         style={{ width: 180, height: 180, left: -90, top: -90 }}
@@ -122,7 +122,7 @@ function PlatformNode({
       className="absolute"
       style={{
         left: `calc(50% + ${px}px - 22px)`,
-        top: `calc(45% + ${py}px - 22px)`,
+        top: `calc(50% + ${py}px - 22px)`,
         width: 44, height: 44, zIndex: active ? 30 : 10
       }}
     >
@@ -269,13 +269,13 @@ export function CodingCommandCenter() {
           : "Orbital intelligence hub · Hover to scan · Tap to inspect"}
       </p>
 
-      <div className="relative w-full overflow-x-auto" style={{ minHeight: orbitScale < 1 ? 300 : 520 }}>
+      <div className="relative w-full overflow-x-auto" style={{ minHeight: orbitScale < 1 ? 300 : 580 }}>
         <div className={`transition-all duration-500 ${selected ? 'opacity-5 pointer-events-none' : 'opacity-100'}`}
-          style={{ transform: `scale(${orbitScale})`, transformOrigin: "top center", minHeight: orbitScale < 1 ? 600 : 520 }}>
+          style={{ transform: `scale(${orbitScale})`, transformOrigin: "top center", minHeight: orbitScale < 1 ? 600 : 580 }}>
           {/* Orbital path rings */}
-          <svg className="absolute inset-0 w-full pointer-events-none" style={{ height: orbitScale < 1 ? 600 : 520, minHeight: orbitScale < 1 ? 600 : 520 }}>
+          <svg className="absolute inset-0 w-full pointer-events-none" style={{ height: orbitScale < 1 ? 600 : 580, minHeight: orbitScale < 1 ? 600 : 580 }}>
             {ORBITS.map((o, i) => (
-              <ellipse key={i} cx="50%" cy="45%" rx={o.radiusX} ry={o.radiusY}
+              <ellipse key={i} cx="50%" cy="50%" rx={o.radiusX} ry={o.radiusY}
                 fill="none" stroke={hoveredIdx === i ? "rgba(34,197,94,0.15)" : "rgba(34,197,94,0.06)"}
                 strokeWidth={hoveredIdx === i ? 1 : 0.6} />
             ))}
